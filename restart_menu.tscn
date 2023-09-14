@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://5itxnioltb6y"]
+
+[ext_resource type="Script" path="res://restart_menu.gd" id="1_rbdl8"]
+
+[node name="restart_menu" type="Node2D"]
+script = ExtResource("1_rbdl8")
+
+[node name="TitleLabel" type="Label" parent="."]
+offset_left = 7.0
+offset_top = 45.0
+offset_right = 1155.0
+offset_bottom = 71.0
+theme_type_variation = &"HeaderLarge"
+text = "You Lose!!!
+Do You Want To Restart?"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+offset_left = 512.0
+offset_top = 520.0
+offset_right = 650.0
+offset_bottom = 572.0
+text = "Is up to you to decide"
+horizontal_alignment = 1
+
+[node name="Options" type="VFlowContainer" parent="."]
+offset_left = 512.0
+offset_top = 226.0
+offset_right = 654.0
+offset_bottom = 465.0
+
+[node name="RestartButton" type="Button" parent="Options"]
+layout_mode = 2
+text = "  Restart   "
+
+[node name="MainMenuButton" type="Button" parent="Options"]
+layout_mode = 2
+text = " Quit To Main Menu "
+
+[connection signal="pressed" from="Options/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Options/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

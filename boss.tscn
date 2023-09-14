@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxw5rhi6svw12"]
+
+[ext_resource type="Texture2D" uid="uid://cmyw7fmkbaox3" path="res://monochrome_tilemap_transparent.png" id="1_hqyab"]
+[ext_resource type="Script" path="res://boss.gd" id="1_tvaqk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kftdn"]
+size = Vector2(5.79167, 1.8225)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hlwq3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dj4wg"]
+
+[node name="Boss" type="RigidBody2D"]
+position = Vector2(1, -8)
+script = ExtResource("1_tvaqk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_hqyab")
+hframes = 20
+vframes = 20
+frame = 340
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-0.915, 7.63)
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_kftdn")
+
+[node name="hurt" type="Area2D" parent="."]
+
+[node name="hurtbox" type="CollisionShape2D" parent="hurt"]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-1, 8)
+scale = Vector2(15, 15)
+shape = SubResource("CircleShape2D_hlwq3")
+debug_color = Color(0.729412, 0.45098, 0.4, 0.419608)
+
+[node name="dontHurt" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dontHurt"]
+position = Vector2(-1, 8)
+scale = Vector2(3, 3)
+shape = SubResource("CircleShape2D_dj4wg")
+debug_color = Color(0, 0.631373, 0.462745, 0.419608)
+
+[node name="hit" type="Area2D" parent="."]
+position = Vector2(-0.97, -1.79)
+
+[node name="hitbox2" type="CollisionShape2D" parent="hit"]
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_kftdn")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="hurt" to="." method="_on_hurt_area_entered"]
+[connection signal="body_entered" from="hurt" to="." method="_on_hurt_body_entered"]
+[connection signal="body_entered" from="dontHurt" to="." method="_on_dont_hurt_body_entered"]
+[connection signal="body_entered" from="hit" to="." method="_on_hit_body_entered"]

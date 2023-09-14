@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmnruuq54adjk"]
+
+[ext_resource type="Texture2D" uid="uid://ctidw1b3mhr6x" path="res://dirt_down.png" id="1_6j5vp"]
+[ext_resource type="Script" path="res://dirt.gd" id="1_w3mxj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7yb28"]
+size = Vector2(17.7976, 39.1419)
+
+[node name="Dirt" type="Node2D"]
+scale = Vector2(0.255, 0.255)
+script = ExtResource("1_w3mxj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6j5vp")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -1.69376)
+scale = Vector2(6.045, 6.045)
+shape = SubResource("RectangleShape2D_7yb28")
